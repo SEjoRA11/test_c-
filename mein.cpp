@@ -32,9 +32,6 @@ using namespace std;
 //     }
 //     friend void Human::takeApple(Apple &apple);
 // };
-
-
-
 // class Image{
 // private:
 //     static const int lenpixel = 5;
@@ -52,7 +49,6 @@ using namespace std;
 //         }
 //     }
 // };
-
 // class Pixel{
 //     private:
 //         int r;
@@ -71,7 +67,6 @@ using namespace std;
 //             return "Pixel r= "+to_string(r)+" g= "+to_string(g)+" b= "+to_string(b);
 //         }
 // };
-
 // class Cap{
 // private:
 //     string color = "red";
@@ -106,8 +101,6 @@ using namespace std;
 //     Brain brain;
 //     Cap cap;
 // };
-
-
 // class Human{
 // private: 
 //     string name ;
@@ -135,8 +128,6 @@ using namespace std;
 //         cout << "Я хожу на пары реже обычного студента!" << endl;
 //     }
 // };
-
-
 // class A{
 // private:
 // string msg;
@@ -156,8 +147,6 @@ using namespace std;
 //     B() : A("Ghhdh") {
 //     }
 // };
-
-
 // class Weapon{
 // public:
 //     virtual void shoot() = 0; 
@@ -186,14 +175,11 @@ using namespace std;
 //         gun->shoot();
 //     }
 // };
-
 // class A{
 // public:
 //     A(){
-        
 //     }
 //     virtual ~A() = 0;
-
 // };
 // A::~A(){};
 // class B : public A{
@@ -204,33 +190,48 @@ using namespace std;
 //     ~B() override {
 //         cout << "Освобождена динамическая память B!" << endl;
 //     }
-
+// };
+// class Human{
+// public:
+//     Human(string name){
+//         this ->name = name;
+//         this ->age = 0;
+//         this ->weight = 0;
+//     }
+//     Human(string name, int age):Human(name){
+//         this ->age = age;
+//     }
+//     Human(string name, int age, int weight):Human(name, age){
+//         this ->weight = weight;
+//     }
+//     string name;
+//     int age;
+//     int weight;
 // };
 
 
-class Human{
+class Car{
 public:
-    Human(string name){
-        this ->name = name;
-        this ->age = 0;
-        this ->weight = 0;
+    void Drive(){
+        cout << "Я еду!"  << endl;
     }
-    Human(string name, int age):Human(name){
-        this ->age = age;
+};
+
+class Airplain{
+public:
+    void Fly(){
+        cout << "Я лечу!" << endl;
     }
-    Human(string name, int age, int weight):Human(name, age){
-        this ->weight = weight;
-    }
+};
 
-
-    string name;
-    int age;
-    int weight;
-
+class FlyingCar:public Car , public Airplain{
 
 };
-int main(){
 
+int main(){
+    FlyingCar fc;
+    fc.Drive();
+    fc.Fly();
 
     return 0;
 } 
