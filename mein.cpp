@@ -208,30 +208,117 @@ using namespace std;
 //     int age;
 //     int weight;
 // };
+// class Car{
+// public:
+//     void use(){
+//         cout << "Я еду!"  << endl;
+//     }
+// };
+// class Airplain{
+// public:
+//     void use(){
+//         cout << "Я лечу!" << endl;
+//     }
+// };
+// class FlyingCar:public Car , public Airplain{
+// };
 
 
-class Car{
+class IBicycle{  //интерфейс 
 public:
-    void Drive(){
-        cout << "Я еду!"  << endl;
+    void virtual EwistTheWheel() = 0;
+    void virtual Ride() = 0;
+};
+
+class SimpleBicycle: public IBicycle{
+public:
+    void EwistTheWheel() override{
+        cout << "Мутод EwistTheWheel SimpleBicycle" << endl;
+    }
+    void Ride() override{
+        cout << "Мутод Ride SimpleBicycle" << endl;
     }
 };
 
-class Airplain{
+class Human{
+public: 
+void RideOn(IBicycle & bicycle){
+    cout << "крутим руль" << endl;
+    bicycle.EwistTheWheel();
+    cout << endl<< "крутим педали" << endl;
+    bicycle.Ride();
+}
+
+};
+
+
+class Component {
 public:
-    void Fly(){
-        cout << "Я лечу!" << endl;
+    Component(string componyName){
+        cout << "Конструктор Companent" << endl;
+        this ->componyName = componyName;
+    }
+    string componyName;
+};
+
+class GPU : public Component{
+public:
+    GPU(string componyName):Component(componyName){
+        cout << "конструктор GPU " << endl;
     }
 };
 
-class FlyingCar:public Car , public Airplain{
+class Memory : public Component{
+public:
+    Memory(string componyName):Component(componyName){
+        cout << "Конструктор Memory" << endl;
+    }
+};
+
+class GraphicCard : public GPU, public Memory{
+public:
+    GraphicCard(string GPUCompanyName, string MemoryCompanyName):GPU(GPUCompanyName),Memory(MemoryCompanyName){
+        cout <<"Конструктор GraphicCard"<<endl;
+    }
 
 };
+
+
+
+class Charecter{
+public:
+Charecter(){
+    cout << "konstruktor Charecter"<<endl;
+}
+};
+
+class Org:public virtual Charecter{
+public:
+Org(){
+    cout << "konstruktor ORG" << endl;
+}
+};
+
+class Warrior : public virtual Charecter{
+public: 
+Warrior(){
+    cout << "konstruktor Warrior" << endl;
+}
+};
+
+class OrgWarrior: public Org, public Warrior{
+public:
+OrgWarrior(){
+    cout << "konstruktor OrgWarrior" << endl;
+}
+};
+
 
 int main(){
-    FlyingCar fc;
-    fc.Drive();
-    fc.Fly();
+    setlocale(0, "ru");
+    OrgWarrior orgw;
+
+
 
     return 0;
 } 
